@@ -1,0 +1,130 @@
+<html lang="en">
+<head><!DOCTYPE html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For You ❤️</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            text-align: center;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            color: white;
+            overflow: hidden;
+        }
+        .container {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
+        }
+        .active {
+            display: flex;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 1.2rem;
+            border: none;
+            background: white;
+            color: #ff4b89;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            transform: scale(1.1);
+        }
+        #noBtn {
+            position: absolute;
+            left: 50%;
+            top: 70%;
+            transform: translateX(-50%);
+        }
+        .quote {
+            font-style: italic;
+            font-size: 1.5rem;
+            max-width: 600px;
+            margin-top: 20px;
+            color: #ffeb3b;
+        }
+    </style>
+</head>
+<body>
+
+<audio id="bg-music" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
+</audio>
+
+<div id="page1" class="container active">
+    <h1>Hey, Beautiful! ❤️</h1>
+    <p>I've been wanting to tell you something special...</p>
+    <button onclick="nextPage(1)">Next</button>
+</div>
+
+<div id="page2" class="container">
+    <h1>From the Moment I Saw You...</h1>
+    <p>I knew you were someone I wanted to be around forever. You bring light to my darkest days.</p>
+    <button onclick="nextPage(2)">Next</button>
+</div>
+
+<div id="page3" class="container">
+    <h1>So, Here’s My Question...</h1>
+    <p>Will you be mine? Forever? ❤️</p>
+    <button onclick="nextPage(3)">YES! 💖</button>
+    <button id="noBtn" onmouseover="moveNoButton()">No 🙈</button>
+</div>
+
+<div id="page4" class="container">
+    <h1>Our Journey Begins! 💫</h1>
+    <p>Thank you for saying yes! I can't wait to make beautiful memories with you. ❤️</p>
+    <p class="quote">"Love is not about how many days, months, or years you have been together. Love is about how much you love each other every single day." 💖</p>
+    <button onclick="finish()">Finish</button>
+</div>
+
+<script>
+    let currentPage = 1;
+    let pages = document.querySelectorAll('.container');
+
+    function nextPage(pageNumber) {
+        pages[pageNumber - 1].classList.remove("active");
+        pages[pageNumber].classList.add("active");
+        if (pageNumber === 1) {
+            document.getElementById("bg-music").play();
+        }
+    }
+
+    function moveNoButton() {
+        let noBtn = document.getElementById("noBtn");
+        let randomX = Math.random() * (window.innerWidth - 100);
+        let randomY = Math.random() * (window.innerHeight - 100);
+        noBtn.style.left = `${randomX}px`;
+        noBtn.style.top = `${randomY}px`;
+    }
+
+    function finish() {
+        alert("Thank you for sharing this beautiful moment with me! 💖");
+    }
+</script>
+
+</body>
+</html>
